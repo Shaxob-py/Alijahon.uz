@@ -1,0 +1,92 @@
+{#----------------------- Phone number --------------------------#}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.js"></script>
+<script>
+        $('#phone-mask').inputmask({
+            "mask": "+\\9\\98(99) 999-99-99"
+        });
+        $('#messages-modal').modal('show');
+</script>
+
+{#-----------------------Region , District--------------------------#}
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#id_region").change(function(){
+            let region_id = $(this).val();
+            if(region_id) {
+                $.ajax({
+                    url: "{% url 'district_list' %}",
+                    data: {'region_id': region_id},
+                    dataType: 'json',
+                    success: function(data){
+                        let citySelect = $("#id_district");
+                        citySelect.empty();
+                        citySelect.append('<option>Tuman/Shahar tanlang</option>');
+                        $.each(data, function(index, city){
+                            citySelect.append('<option value="' + city.id + '">' + city.name + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $("#id_district").empty();
+                $("#id_district").append('<option value="">Shahar/Tumanni tanlang</option>');
+            }
+        });
+    });
+</script>
+
+
+{#--------------------- wish list ------------------------#}
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".like-button").forEach(button => {
+            button.addEventListener("click", function () {
+                console.log("hello")
+                let productId = this.dataset.productId;
+                let button = this;
+
+                fetch(`/wishlist/${productId}`, {
+                    method: "GET"
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.clicked) {
+                            button.classList.add("bg-danger");  // Like bosilgan bo‘lsa qizil bo‘ladi
+                        } else {
+                            button.classList.remove("bg-danger"); // Unlike bo‘lsa rang o‘zgaradi
+                        }
+                    });
+            });
+        });
+    });
+</script>
+
+
+{#========== oqim yaratish uchun =============#}
+<script>
+    $('.btn_open_modal').on('click', function () {
+        let product_id = $(this).attr('name');
+        $('#hidden_product').val(product_id);
+        let benefit = $(this).data('benefit'); // Misol uchun data-benefit="20000"
+        // Placeholder'ni yangilash
+        $('#id_discount').attr('placeholder', 'Chegirma miqdori: ' + benefit + ' so\'mdan oshmasin');
+    })
+</script>
+
+
+{#---------------------- copy thread ---------------#}
+<script>
+    $(".card-body .copy_ref_bn").on('click', function () {
+        var copyText = $(this).parent().find('.ref_link').get(0);
+
+        copyText.select();
+        document.execCommand("copy");
+        $(this).text('Nusxa olindi');
+    });
+</script>

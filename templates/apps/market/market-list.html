@@ -1,0 +1,117 @@
+{% extends 'apps/base/base-page.html' %}
+{% load i18n %}
+{% load humanize %}
+{% block body %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Oqim yaratish</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" action="{% url 'thread-form' %}" class="form-class">
+                                {% csrf_token %}
+                                <input name="product" type="hidden" id="hidden_product" value="test">
+
+                                Oqim nomi <input type="text" name="name" class="form-control" placeholder=""
+                                                 mt-2="Oqim uchun nom kiriting" required="" id="id_title">
+
+                                Chegirma <input type="text" name="discount" class="form-control" placeholder=""
+                                                mt-2="Chegirma miqdori: {{ product.benefit }} so'mgacha"
+                                                id="id_discount">
+
+                                <input type="submit" class="btn btn-primary mt-4" value="Oqim yaratish">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+            {% if messages %}
+                {% for message in messages %}
+                    <h3 style="color: red">{{ message }} </h3>
+                	
+                {% endfor %}
+                
+            	
+            {% endif %} 
+                <br>
+                <br>
+                <h3 class="text-center"> Hozirda sotuvda bor <br> mahsulotlar </h3>
+                <br>
+
+                <div class="container border-bottom-4">
+                    <div class="header_tab_menu">
+                        <div class="header_menu" style="overflow: auto">
+                            <a href="{% url 'market-list' %}" class="btn btn-default {% if not c_slug %}active{% endif %} "> Hammasi </a>
+                            <a href="{% url 'market-list' %}?category_slug=top" class="btn btn-default {% if c_slug == 'top' %}active{% endif %} "> Top
+                                tovarlar </a>
+                            {% for category in categories %}
+                                <a href="{% url 'market-list' %}?category_slug={{ category.slug }}"
+                                   class="btn btn-default {% if c_slug == category.slug %}active{% endif %} ">{{ category.name }}</a>
+                            {% endfor %}
+
+
+                        </div>
+
+                        <div class="row mt-5">
+
+                            {% for product in products %}
+                                <div class="col-sm-4 p-2">
+                                    <div class="card">
+                                        <a href="{% url 'order-form' product.slug %}" target="_blank">
+                                            <img class="card-img-top" src="{{ product.image.url }}"
+                                                 alt="Baxtli hayot sari !!!" style="height: 250px">
+                                        </a>
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <a href="{% url 'order-form' product.slug %}" target="_blank">
+                                                    {{ product.name }}
+                                                </a>
+                                            </h5>
+                                            <p class="text-muted"> {{ product.price|floatformat:'0'|intcomma }}
+                                                so'm </p>
+                                        </div>
+
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{% translate 'Pay:' %}:
+                                                <strong>{{ product.seller_price }} </strong></li>
+
+                                            <li class="list-group-item">{% translate 'Reserve:' %}:
+                                                <strong> {{ product.quantity }} {% translate 'piece' %} </strong>
+                                            </li>
+
+                                            {#                                            <li class="list-group-item">Chegirma: <strong> Yuq </strong>#}
+                                            {#                                            </li>#}
+
+                                        </ul>
+
+                                        <!-- <form method="post"> <input type="hidden" name="csrfmiddlewaretoken" value="51QcbJwh2pZU1PJjJGo97Owa6ofwVc5sp265bA0848VjrpOeOrW4xvr4nE5foSG6"> <input type="hidden" name="product_id" value="552"> <input type="submit" value="Oqim yaratish" class="btn btn-primary"> </form> -->
+
+                                        <a href="https://t.me/Alijahon_bot/{{ product.message_id }}"
+                                           class="btn bg-danger text-white mt-2">Reklama
+                                            Posti</a>
+                                        <button class="btn btn-primary btn_open_modal mt-2" data-benefit="{{ product.seller_price }}" type="button"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal" name="{{ product.pk }}">
+                                            Oqim yaratish
+                                        </button>
+                                        <a href="{% url 'order-form' product.slug %}"
+                                           class="btn bg-danger text-white mt-2">Batafsil</a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endblock %}

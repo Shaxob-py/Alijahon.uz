@@ -1,0 +1,51 @@
+
+{% extends 'apps/base/base-page.html' %}
+
+
+{% block body %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: #fff;
+        }
+
+        canvas {
+            max-width: 900px;
+        }
+    </style>
+    <h2>Viloyatlar bo‘yicha buyurtmalar soni</h2>
+    <canvas id="regionChart" width="900" height="450"></canvas>
+    <script>
+        fetch('{% url 'region-orders-data' %}')  // Bu URL sizning Django URL'laringizga mos bo'lishi kerak
+            .then(response => response.json())
+            .then(data => {
+                const ctx = document.getElementById('regionChart').getContext('2d');
+                const chart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: data.regions,
+                        datasets: [{
+                            label: 'Buyurtmalar soni',
+                            data: data.numbers,
+                            backgroundColor: [
+                                '#36A2EB', '#FF6384', '#FF8C42', '#FFCE56', '#4BC0C0',
+                                '#9966FF', '#C0C0C0', '#36A2EB', '#FF6384', '#FFA726',
+                                '#FFD54F', '#4DB6AC', '#BA68C8', '#BDBDBD'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            });
+    </script>
+{% endblock %}

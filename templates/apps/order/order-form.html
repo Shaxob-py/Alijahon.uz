@@ -1,0 +1,140 @@
+{#{% extends 'apps/base/base-page.html' %}#}
+{#{% load i18n %}#}
+{#{% block body %}#}
+{#    <div class="card mb-3">#}
+{#        <div class="card-body">#}
+{#            <div class="container border-bottom-4">#}
+{#                <div class="header_tab_menu ">#}
+{#                    <div class="header_menu active" style="overflow: auto">#}
+{##}
+{#                        <a href="{% url 'product-list' %}" class="btn btn-default {% if not c_slug %}active{% endif %}">#}
+{#                            {% translate 'All' %}#}
+{#                        </a>#}
+{#                        {% for category in categories %}#}
+{#                            <a href="{% url 'product-list' %}?category_slug={{ category.slug }}" class="btn btn-default {% if c_slug == category.slug %}active{% endif %}">#}
+{#                                {{ category.name }}#}
+{#                            </a>#}
+{#                        {% endfor %}#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="container" id="productsList">#}
+{#                <div class="content_grid">#}
+{#                    <div class="row mt-5">#}
+{#                        {% for product in products %}#}
+{#                        	<div class="col-6 mb-3 col-md-6 col-lg-4">#}
+{#                            <div class="border rounded-1 d-flex flex-column justify-content-between pb-3">#}
+{#                                <div class="overflow-hidden">#}
+{#                                    <div class="position-relative rounded-top overflow-hidden">#}
+{#                                        <a class="d-block" href="#"><img#}
+{#                                                class="img-fluid rounded-top"#}
+{#                                                src="{{ product.image.url }}" alt=""></a>#}
+{#                                    </div>#}
+{#                                    <div class="p-2">#}
+{#                                        <h5 class="fs-0"><a class="text-dark"#}
+{#                                                            href="/product-detail/oyoq-kiyim-uchun-maxsus-shkaf">{{ product.title }}</a></h5>#}
+{#                                        <p class="fs--1 mb-2"><a class="text-500" href="/category/uy-uchun">{{ product.category.name }}</a>#}
+{#                                        </p>#}
+{#                                        <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-2"> ${{ product.price }}#}
+{#                                            <!-- <del class="ms-2 fs--1 text-500">180 000 so'm </del> -->#}
+{#                                        </h5>#}
+{#                                        <p></p>#}
+{#                                    </div>#}
+{#                                </div>#}
+{##}
+{#                                <div class="d-flex flex-between-center px-3">#}
+{##}
+{#                                    <div><a class="btn btn-sm btn-falcon-default" style="width: 130px;" href="#!"#}
+{#                                            data-bs-toggle="tooltip" data-bs-placement="top" title=""#}
+{#                                            data-bs-original-title="Add to Cart" aria-label="Add to Cart">#}
+{#                                        <svg class="svg-inline--fa fa-cart-plus fa-w-18" aria-hidden="true"#}
+{#                                             focusable="false" data-prefix="fas" data-icon="cart-plus" role="img"#}
+{#                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">#}
+{#                                            <path fill="currentColor"#}
+{#                                                  d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z"></path>#}
+{#                                        </svg>#}
+{#                                        <!-- <span class="fas fa-cart-plus"></span> Font Awesome fontawesome.com --></a>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        {% endfor %}#}
+{#                        #}
+{##}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#{% endblock %}#}
+
+{% extends 'apps/base/base-page.html' %}
+{% load humanize %}
+{% block body %}
+    <div class="card mb-3 mt-2">
+        <div class="card-body">
+            <div class="col-lg-8 swiper-container">
+
+                <form action="{% url 'order-form' product.slug %}" method="post">
+                    {% csrf_token %}
+                    <div class="mb-2">
+                        <label class="form-label" for="formGroupNameInput">Ism:</label>
+                        <input class="form-control" name="fullname" id="formGroupNameInput" type="text">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label" for="formGroupEmailInput">Telefon nomer:</label>
+                        <input class="form-control" id="phone-mask" required="" name="phone_number" type="text">
+                    </div>
+                    {% if product %}
+                    	<input class="hidden" hidden="hidden" id="phone-mask" required="" name="product"
+                           value="{{ product.pk }}" type="text">
+                    {% endif %}
+                    {% if thread %}
+                    	<input class="hidden" hidden="hidden" id="phone-mask" required="" name="thread"
+                           value="{{ thread.pk }}">
+                    {% endif %}
+
+
+
+                    <span style="padding-bottom: 100px;">
+
+
+
+                </span>
+                    <div class="d-grid gap-2 col-6 mx-auto" style="margin-top: 20px;">
+                        <button class="btn btn-primary" type="submit">Buyurtma berish</button>
+                    </div>
+                </form>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 swiper-container" style="margin-top: 20px;">
+
+                    <img src="{{ product.image.url }}" alt="" class="img-main mb-3 img-fluid">
+
+                    <div class="row mb-5 thumbs">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 swiper-container">
+                <h5>
+                    {{ product.name }}
+                </h5>
+                <p class="fs--1">
+                    {{ product.description|safe }}
+                </p>
+                <h4 class="d-flex align-items-center">
+                <span class="text-warning me-2">
+                    {% if thread %}
+                        {{ thread.discount_price|intcomma }} so'm
+                    {% else %}
+                        {{ product.price|intcomma }} so'm
+                    {% endif %} 
+
+                </span>
+                </h4>
+            </div>
+        </div>
+    </div>
+{% endblock %}

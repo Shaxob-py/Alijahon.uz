@@ -1,0 +1,55 @@
+{% extends "apps/base/base-page.html" %}
+
+{% block body %}
+    <div class="container text-center pb-5 card" style="margin-top: 80px;">
+        <div class="card-body" style="margin-top: 30px">
+
+        </div>
+
+        <img style="height: 100px; width:100px; margin-left:45%; margin-top: 30px"
+             src="https://img.icons8.com/color/48/ok--v1.png" alt="Green Success Image">
+        <h3 class="mt-4">Arizangiz qabul qilindi!</h3>
+        <p>Operatorlarning ish vaqti 9:00 dan 23:00 gacha. Kunduzi siz bilan aloqaga chiqadi. E'tiboringiz uchun
+            rahmat</p>
+        <p>Iltimos, telefoningiz yoqilgan holda bo'lsin!</p>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Mahsulot</th>
+                <th scope="col">Summa</th>
+                <th scope="col">Soni</th>
+                <th scope="col">Umumiy</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="col">{{ order.product.name }}</th>
+                {% if order.thread %}
+                    <th scope="col">{{ order.thread.discount_price }}</th>
+                {% else %}
+                    <th scope="col">{{ order.product.price }}</th>
+                {% endif %}
+
+                <th scope="col">{{ order.quantity }}</th>
+                <th scope="col">{{ order.total }}</th>
+            </tr>
+
+            <tr>
+                <th scope="col">Yetkazib berish</th>
+                <th scope="col">{{ site.delivery_price }}</th>
+            </tr>
+
+
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-md-6">
+
+
+            </div>
+            <div class="col-md-6 mt-3">
+                <a href="{% url 'home' %}" class="btn btn-primary w-50">Boshqa mahsulotlar</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

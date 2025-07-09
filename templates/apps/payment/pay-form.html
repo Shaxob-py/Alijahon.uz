@@ -1,0 +1,117 @@
+{% extends 'apps/base/base-page.html' %}
+{% load humanize %}
+{% block body %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <div class="container">
+                <br>
+                <div class="row">
+                    <div class="col-sm-6 p-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Mening hisobim</h5>
+                            </div>
+                            <div class="card-body">
+                              <h5 class="card-title">
+    Asosiy balansda: {{ request.user.balance|floatformat:0|intcomma }} so'm
+</h5>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-6 p-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>To'lovga sorov berish formasi</h5>
+                            </div>
+                            <nav>
+                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <button id="nav-money-tab" class="nav-link active" data-bs-toggle="tab"
+                                            data-bs-target="#nav-money" type="button" role="tab"
+                                            aria-controls="nav-money" aria-selected="true">Pul
+                                    </button>
+
+                                </div>
+                            </nav>
+                            <div class="tab-content" id="nav-tabContent">
+                                <div class="tab-pane fade show active" id="nav-money" role="tabpanel"
+                                     aria-labelledby="nav-money-tab">
+                                    <form class="card-body" action="{% url 'pay-form' %}" method="post">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            Karta raqami <input type="text" name="card_number" class="form-control"
+                                                                placeholder="Karta raqamini kiriting" maxlength="16"
+                                                                required="" id="id_card_number">
+                                        </div>
+
+                                        <div class="form-group">
+                                            Amount <input type="number" name="amount" class="form-control"
+                                                          placeholder="Miqdorini kiriting" required="" id="id_amount">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <select name="type" class="form-control class-type" style="display: none;"
+                                                    id="id_type">
+                                                <option value="money">Pul</option>
+
+                                                <option value="coin">Tanga</option>
+
+                                            </select>
+                                        </div>
+
+                                        <input type="submit" value="Tasdiqlash" class="btn btn-primary">
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+
+                <div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr class="text-center">
+                <th>Sana</th>
+                <th>Hisob raqam</th>
+                <th>Summa</th>
+                <th>Holat</th>
+                <th>Xabar</th>
+                <th>Chek</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if not payments %}
+                <tr class="text-center">
+                    <td colspan="6">Hozircha sizda pul yechish so‘rovlar mavjud emas</td>
+                </tr>
+            {% else %}
+                {% for payment in payments %}
+                    <tr class="text-center">
+                        <td>{{ payment.pay_at|date:"d.m.Y" }}</td>
+                        <td>{{ payment.card_number }}</td>
+                        <td>{{ payment.amount }}</td>
+                        <td>{{ payment.status }}</td>
+                        <td>{{ payment.comment }}</td>
+                        <td>
+                            {% if payment.receipt %}
+                                <a href="{{ payment.receipt.url  }}"><img src="{{ payment.receipt.url }}" alt="Chek" style="width: 50px"></a>
+                            {% else %}
+                                —
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

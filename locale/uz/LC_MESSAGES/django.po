@@ -1,0 +1,256 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-07 09:10+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: apps/forms.py:32
+msgid "Wrong Password!"
+msgstr "Parol xato"
+
+#: apps/forms.py:66
+msgid "Passwords don't match"
+msgstr ""
+
+#: apps/forms.py:110
+msgid "The discount exceeded the specified limit!"
+msgstr ""
+
+#: apps/forms.py:130
+msgid "Invalid card number!"
+msgstr ""
+
+#: apps/forms.py:138
+msgid "The amount exceeds the allowed limit!"
+msgstr ""
+
+#: apps/models.py:152
+msgid "New"
+msgstr ""
+
+#: apps/models.py:153
+msgid "Ready To Delivery"
+msgstr ""
+
+#: apps/models.py:154
+msgid "Delivering"
+msgstr ""
+
+#: apps/models.py:155
+msgid "Delivered"
+msgstr ""
+
+#: apps/models.py:156
+msgid "Not Call"
+msgstr ""
+
+#: apps/models.py:157
+msgid "Canceled"
+msgstr ""
+
+#: apps/models.py:158
+msgid "Archived"
+msgstr ""
+
+#: apps/views.py:135
+#, fuzzy
+#| msgid "Password"
+msgid "Password invalid !"
+msgstr "Parol"
+
+#: templates/apps/auth/auth-page.html:24
+msgid "Login"
+msgstr "Kirish"
+
+#: templates/apps/auth/auth-page.html:31
+msgid "Phone Number"
+msgstr "Telefon raqam"
+
+#: templates/apps/auth/auth-page.html:38
+msgid "Password"
+msgstr "Parol"
+
+#: templates/apps/auth/auth-page.html:54
+msgid "Terms of use"
+msgstr ""
+
+#: templates/apps/base/base-page.html:173
+msgid "Main Page"
+msgstr "Bosh Sahifa"
+
+#: templates/apps/base/base-page.html:180
+msgid "Products"
+msgstr ""
+
+#: templates/apps/market/market-list.html:84
+msgid "Pay:"
+msgstr ""
+
+#: templates/apps/market/market-list.html:87
+msgid "Reserve:"
+msgstr ""
+
+#: templates/apps/market/market-list.html:88
+msgid "piece"
+msgstr ""
+
+#: templates/apps/operator/order-change.html:9
+msgid "Order Details"
+msgstr ""
+
+#: templates/apps/operator/order-change.html:74
+msgid "Hammasi to'g'ri kiritilganligiga e'tibor bering!"
+msgstr ""
+
+#: templates/apps/operator/order-change.html:75
+msgid "Buyurtma Beruvchi Ism Sharifi:"
+msgstr ""
+
+#: templates/apps/operator/order-change.html:77
+msgid "Buyurtma Beruvchi Raqami:"
+msgstr ""
+
+#: templates/apps/operator/order-change.html:79
+msgid "Mahsulot:"
+msgstr ""
+
+#: templates/apps/operator/order-change.html:105
+#: templates/apps/operator/order-change.html:152
+msgid "Nechta:"
+msgstr ""
+
+#: templates/apps/operator/order-change.html:113
+#: templates/apps/operator/order-change.html:160
+msgid "Yuborish vaqti"
+msgstr ""
+
+#: templates/apps/operator/order-change.html:121
+#: templates/apps/operator/order-change.html:139
+#: templates/apps/operator/order-change.html:168
+#: templates/apps/operator/order-change.html:186
+msgid "Viloyat"
+msgstr ""
+
+#: templates/apps/operator/order-change.html:126
+#: templates/apps/operator/order-change.html:173
+msgid "Viloyat tanlang"
+msgstr ""
+
+#: templates/apps/operator/order-change.html:141
+#: templates/apps/operator/order-change.html:188
+msgid "Tuman tanlang"
+msgstr ""
+
+#: templates/apps/operator/order-change.html:202
+msgid "Buyurtma holati"
+msgstr ""
+
+#: templates/apps/operator/order-change.html:203
+msgid ""
+"Buyurtma holatini o'zgartirishdan oldin har bir ma'lumot to'g'ri "
+"to'ldirilganligiga ishonch hosil qiling."
+msgstr ""
+
+#: templates/apps/operator/order-change.html:204
+msgid "Har bir noto'g'ri to'ldirilgan holat uchun"
+msgstr ""
+
+#: templates/apps/operator/order-change.html:204
+msgid "sum jarima."
+msgstr ""
+
+#: templates/apps/operator/order-change.html:218
+msgid "Yetkazilmoqda"
+msgstr ""
+
+#: templates/apps/operator/order-change.html:221
+msgid "Buyurtma hozir yetkazilmoqda."
+msgstr ""
+
+#: templates/apps/operator/order-change.html:236
+msgid "Yetkazildi"
+msgstr ""
+
+#: templates/apps/operator/order-change.html:239
+#: templates/apps/operator/order-change.html:256
+msgid "Buyurtma muvaffaqiyatli yetkazildi."
+msgstr ""
+
+#: templates/apps/operator/order-change.html:253
+msgid "Yopildi"
+msgstr ""
+
+#: templates/apps/operator/order-change.html:267
+msgid "Yangi"
+msgstr ""
+
+#: templates/apps/operator/order-change.html:270
+msgid "Buyurtma yangi holatda qabul qilindi va hali bog'lanilmagan."
+msgstr ""
+
+#: templates/apps/operator/order-change.html:284
+msgid "Dastavkaga tayyor"
+msgstr ""
+
+#: templates/apps/operator/order-change.html:287
+msgid ""
+"Klient buyurtma olishga tayyor yoki buyurtma olish uchun sana aniq qilindi."
+msgstr ""
+
+#: templates/apps/operator/order-change.html:303
+msgid "Qo'ng'iroq qilib bo'lmadi"
+msgstr ""
+
+#: templates/apps/operator/order-change.html:306
+msgid ""
+"2 marta ko'tarmadi, o'chirilgan, xizmat ko'rsatish doirasida tashqarida."
+msgstr ""
+
+#: templates/apps/operator/order-change.html:320
+msgid "Nosoz, bekor qilindi"
+msgstr ""
+
+#: templates/apps/operator/order-change.html:323
+msgid "Klient tomonidan shikoyat tushdi."
+msgstr ""
+
+#: templates/apps/operator/order-change.html:338
+msgid "Arxivlandi"
+msgstr ""
+
+#: templates/apps/operator/order-change.html:341
+msgid "Noto'g'ri nomer, dubl buyurtma, bekor qilindi, olib bo'lgan."
+msgstr ""
+
+#: templates/apps/operator/order-change.html:352
+msgid "Komment"
+msgstr ""
+
+#: templates/apps/operator/order-change.html:359
+msgid "Ushbu buyurtma uchun izoh..."
+msgstr ""
+
+#: templates/apps/operator/order-change.html:366
+msgid "Chiqish"
+msgstr ""
+
+#: templates/apps/operator/order-change.html:369
+msgid "Yuborish"
+msgstr ""
+
+#~ msgid "new"
+#~ msgstr "Yangi"
